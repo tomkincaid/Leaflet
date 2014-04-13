@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Map</title>
+
+<link rel="stylesheet" href="leaflet.css" />
+
+<style type="text/css">
+
+body {
+	padding:0;
+	margin:0;
+	background-color:#cccccc;
+	overflow:hidden;
+}
+
+#map {
+	width:100%;
+	height:100%;
+	border:0;
+	margin:0;
+}
+
+</style>
+
+<script src="jquery-2.1.0.min.js"></script>
+ 
+<script src="leaflet.js"></script>
+
+<script>
+
+$( document ).ready(function() {
+	
+	// set map to full size of window, css height 100% doesn't work
+	var w = $(window).width();
+	var h = $(window).height();
+	$("#map").css("width",w+"px");
+	$("#map").css("height",h+"px");
+	
+	var map = L.map( 'map', { zoomControl:false });
+	
+	var tilelayer = L.tileLayer(
+		"http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png", 
+		{
+			detectRetina: false, // if true map is extra small
+			tileSize: 256,
+			attribution: attribution
+		}
+	);
+	tilelayer.addTo(map);
+
+	map.setView([40.72,-73.95],15);
+});
+
+
+var attribution = "&copy <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors under <a href='http://creativecommons.org/licenses/by-sa/2.0/'>CC BY-SA</a>, tiles courtesy of <a href='http://www.mapquest.com/'>MapQuest</a>";
+
+</script>
+ 
+</head>
+<body>
+
+<div id="map"></div>
+
+</body>
+</html>
